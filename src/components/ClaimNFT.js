@@ -11,9 +11,10 @@ import {
     useDisconnect,
     useNetworkMismatch,
     useNetwork,
-    ChainId
+    ChainId,
+    ConnectWallet
 } from "@thirdweb-dev/react";
-import logo from '../tribe_market_logo.png'
+import logo from '../TMNYC_W@2x.png' 
 import styled, { useTheme } from 'styled-components'
 import gif from '../TribeHoodie.gif'
 import {useParams, useNavigate,} from "react-router-dom" 
@@ -87,8 +88,7 @@ const Logo = styled.img`
         width: 86px;
         height: 47px;
         left: 22px;
-        top: -52px;
-        
+        top: -13vh;
     }
 
 
@@ -277,8 +277,19 @@ const LP = styled.button`
 
 
 
+  //Testing autoconnect
+  /* const AutoConnect = () => {
+    const address = useAddress();
+    const [, switchNetwork] = useNetwork();
+    const isMismatched = useNetworkMismatch();
 
-
+    useEffect() => {
+        if (isMismatched) {
+            switchNetwork(chainId.Mumbai);
+        }
+    }, [address] ;
+    return <ConnectWallet/>
+  } */
 
   // claim function
   const claim = async () => {
@@ -292,10 +303,10 @@ const LP = styled.button`
     }
 
     // checking if user is on the right network
-
     if(isWrongNetwork)
     {   //switchNetwork could be undefined so we check before we run the fucntion
        switchNetwork && switchNetwork(ChainId.Mumbai())
+       console.log("test" + switchNetwork)
        return;
     }
 
@@ -425,7 +436,7 @@ const LP = styled.button`
                        
                     
                     </Bottom>
-                    <LP onClick={()=>{backClick();}}>Selection page</LP>
+                    {/* <LP onClick={()=>{backClick();}}>Selection page</LP> */}
                 </Wrapper>
             </Container>
             ) 

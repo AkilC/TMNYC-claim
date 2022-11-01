@@ -25,7 +25,6 @@ const Container = styled.div`
 `
 
 const Wrapper = styled.div`
-
   
    width: 700px;
    height: 700px;
@@ -33,7 +32,7 @@ const Wrapper = styled.div`
 `
 
 const Top = styled.div`
-    border: solid;
+    border: none;
     border-color: white;
     color: white;
     text-align: center;
@@ -41,7 +40,7 @@ const Top = styled.div`
 
 
 const Bottom = styled.div`
-    border: solid;
+    border: none;
     border-color: red;
     display: flex;
     flex-wrap: wrap;
@@ -54,7 +53,7 @@ const Bottom = styled.div`
 
 const Image = styled.img`
 
-    width: 200px;
+    width: 250px;
     height: 250px;
     cursor: pointer;
     object-fit: cover;
@@ -69,7 +68,7 @@ const Image = styled.img`
 
     @media screen and (max-width: 800px)
     {
-        width: 50px;
+        width: 100px;
         height: 100px;
         padding: 0px 20px;
         
@@ -79,7 +78,7 @@ const Image = styled.img`
 
 const MerchWrap = styled.div`
     border: solid;
-    border-color: green;
+    border-color: gray;
     width: 300px;
     height: 300px;
     margin-top: 20px;
@@ -89,6 +88,7 @@ const MerchWrap = styled.div`
     align-items: center;
     color:white;
     text-align: center;
+    border-radius: 8px;
 
     @media screen and (max-width: 800px)
     {
@@ -199,7 +199,7 @@ const Selection = () => {
                     <LogoutB  onClick={logoutClick} />
                         <Wrapper >
                             <Top>
-                                <h1>Please select the item you purchased</h1>
+                                <h2>Please select the item you purchased</h2>
                             </Top>
                             <Bottom>
                             {
@@ -208,7 +208,7 @@ const Selection = () => {
                                     return(
                                         <MerchWrap key={merch.id}>
                                                     <Image src={merch.img} onClick={()=>{userItemCheck(merch.productId)}}/>
-                                                <h3>{merch.title}</h3>
+                                                <h4>{merch.title}</h4>
                                         </MerchWrap>
                                     )
                                 })
