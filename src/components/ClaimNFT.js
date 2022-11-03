@@ -27,13 +27,13 @@ import { useContext } from 'react';
 import { merchandise } from '../merchData';
 import ifUserOwnsItem from './utils/ifUserOwnsItem';
 import axios from 'axios'
-
+import Navbar from './Navbar'
 const Container = styled.div`
 
     width: 100%;
     height: 100vh;
     position: relative;
-    background-color: black;
+    background-color: #222;
     color: white;
     display: flex;
     justify-content: center;
@@ -248,7 +248,7 @@ const Nav = styled.nav`
   const isWrongNetwork = useNetworkMismatch();
   //the useNetwork() has a feature called switchNetwork
   //switchNetwork is a function that allows you change to the selectd network
-  const {switchNetwork} = useNetwork();
+  const [, switchNetwork] = useNetwork();
   const [claiming, setClaiming] = useState(false)
   const [assetClaimed, setAssetClaimed] = useState(null)
   const [auth, setAuth] = useState(null)
@@ -304,7 +304,8 @@ const Nav = styled.nav`
   const claim = async () => {
 
     //checking if user has connected
-    
+    console.log(1)
+    console.log(isWrongNetwork)
     if(!address)
     {
         connectMetamask();
@@ -314,7 +315,7 @@ const Nav = styled.nav`
     // checking if user is on the right network
     if(isWrongNetwork)
     {   //switchNetwork could be undefined so we check before we run the fucntion
-       switchNetwork && switchNetwork(ChainId.Mumbai())
+       switchNetwork && switchNetwork(ChainId.Mumbai)
        console.log("test" + switchNetwork)
        return;
     }
@@ -335,10 +336,6 @@ const Nav = styled.nav`
   }
   
 
-  const backClick =()=>{
-
-    Navigate('/selection')
-  }
 
 //   const nftCollection = useNFTCollection(contractAddress)
 //   const getNFTs = async () => {
@@ -350,7 +347,7 @@ const Nav = styled.nav`
   {
     return(
     <Container>
-        <Spinner style={{}} name="Loading"/>
+        <Spinner  name="Loading"/>
     </Container>
     )
   }
@@ -359,9 +356,9 @@ const Nav = styled.nav`
   return (
 
     <>
-        <Nav>
-            <LogoutB onClick={logoutClick} style={{marginRight:"30px"}} />   
-        </Nav>  
+        <Navbar>
+                <LogoutB  onClick={logoutClick}/>
+        </Navbar> 
         {
 
            ( logoutClicked ? (
@@ -378,10 +375,11 @@ const Nav = styled.nav`
             )
             :
 
-            (
+            (   
+            
+                
                 <Container>
                 <Wrapper>
-                <Logo src={logo} />
                 <Top>
                         <Image src={metaData.image}/>   
                         <ItemName>{metaData.name}</ItemName>
@@ -442,10 +440,12 @@ const Nav = styled.nav`
                             </>
                     
                         }
+                        
                     </Bottom>
                     {/* <LP onClick={()=>{backClick();}}>Selection page</LP> */}
                 </Wrapper>
             </Container>
+            
             ) 
            )
         
