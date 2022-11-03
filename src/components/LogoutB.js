@@ -5,12 +5,11 @@ import styled from 'styled-components'
 
 const Button = styled.button`
 
-        position: absolute;
+        position: relative;
         background-color: white;
         width: 80px;
         height: 45px;
-        top: 25px;
-        right: 30px;
+        
         border: none;
         border-color: white;
         color: black;

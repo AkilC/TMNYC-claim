@@ -10,24 +10,35 @@ import Modal from './Modal'
 import Modal2 from './Modal/index'
 import { AnimatePresence } from 'framer-motion'
 import ifUserOwnsItem from './utils/ifUserOwnsItem'
-import {OAuthExtension} from '@magic-ext/oauth'
+import Navbar from './Navbar'
 
 const Container = styled.div`
 
     width: 100%;
-    height: 100vh;
+    min-height:100vh;
     background-color: #222;
     display: flex;
     justify-content: center;
-    align-items: center;
-    overflow: scroll;
+    align-items: flex-start;
+    
+
+
+
+
+    
+    
+    
 
 `
 
 const Wrapper = styled.div`
   
+    
    width: 700px;
-   height: 700px;
+  
+   margin-top: 50px;
+   margin-bottom:100px;
+   
 
 `
 
@@ -36,6 +47,15 @@ const Top = styled.div`
     border-color: white;
     color: white;
     text-align: center;
+    margin-bottom: 20px;
+    @media screen and (max-width: 800px)
+    {
+        font-size: 10px;
+        
+    }
+    
+
+ 
 `
 
 
@@ -62,6 +82,7 @@ const Image = styled.img`
     &:hover{
         background-color: #484848 ;
         transform: scale(1.1);
+        
         
 
     }
@@ -98,15 +119,27 @@ const MerchWrap = styled.div`
         
     }
     
-    
-
-
 `
-
+const magic = new Magic('pk_live_B8ED3820154A68B1');
 
 const Selection = () => {
 
+    useEffect(()=>{
+        async function getUser(){
 
+            try {
+
+                const res = await magic.user.getMetadata();
+                console.log(res)
+                res.email && localStorage.setItem('email',res.email)
+                
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        getUser();
+    },[])
     
     
     const Navigate = useNavigate()
@@ -167,7 +200,9 @@ const Selection = () => {
     const open = () => setModalOpen(true)
     //<Modal open = {openModal} onClose = {()=>{ setOpenModal(false)}}/>
   return (
+      
     <div>
+         
         {
             logoutClicked ? (
                 <Container>
@@ -183,8 +218,14 @@ const Selection = () => {
 
             )
             :
+                
+                
 
-            (
+            ( 
+                <>
+                <Navbar>
+                <LogoutB  onClick={logoutClick}/>
+                </Navbar>
                 <Container>
                   <AnimatePresence
                     initial={false}
@@ -196,7 +237,7 @@ const Selection = () => {
                     text={"Please purchase desired item, then come back and claim it. Make sure you logged in with the same email used to make the purchase"}
                     />}
                   </AnimatePresence>
-                    <LogoutB  onClick={logoutClick} />
+                    
                         <Wrapper >
                             <Top>
                                 <h2>Please select the item you purchased</h2>
@@ -217,6 +258,7 @@ const Selection = () => {
 
                         </Wrapper>
                 </Container>
+                </>
             )
         }
     </div>

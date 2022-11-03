@@ -15,8 +15,8 @@ import {
     ConnectWallet
 } from "@thirdweb-dev/react";
 import logo from '../TMNYC_W@2x.png' 
-import styled, { useTheme } from 'styled-components'
-import gif from '../TribeHoodie.gif'
+import styled from 'styled-components'
+
 import {useParams, useNavigate,} from "react-router-dom" 
 import Spinner from './Spinner'
 import LogoutB from './LogoutB';
@@ -33,7 +33,6 @@ const Container = styled.div`
     width: 100%;
     height: 100vh;
     position: relative;
-    overflow: hidden;
     background-color: black;
     color: white;
     display: flex;
@@ -47,9 +46,9 @@ const Wrapper = styled.div`
     height: 40rem;
     width: 70rem;
     position: relative;
-    
     display: flex;
     flex-direction: column;
+    
 
     @media screen and (max-width: 800px){
         
@@ -81,6 +80,7 @@ const Logo = styled.img`
     height: 77px;
     left: 22.3rem;
     top: -80px; 
+   
     
 
     @media screen and (max-width: 800px)
@@ -88,7 +88,8 @@ const Logo = styled.img`
         width: 86px;
         height: 47px;
         left: 22px;
-        top: -13vh;
+        top: -55px;
+        
     }
 
 
@@ -97,7 +98,7 @@ const Logo = styled.img`
 const Image = styled.img`
 
     height: 400px;
-    width: 400x;
+    width: 400px;
     
 
     @media screen and (max-width: 800px)
@@ -147,6 +148,14 @@ const LP = styled.button`
   
 `
 
+const Nav = styled.nav`
+
+    display: flex;
+    justify-content: flex-end ;
+    align-items: center;
+    background-color: black;
+    height: 80px ;
+`
 
 
 
@@ -336,12 +345,12 @@ const LP = styled.button`
 //     const nfts = await nftCollection.getAll()
 //     console.log(nfts)    
 // }
-
-  if(!contract || !metaData || !claimedNFTs || auth === null)
+// if(!contract || !metaData || !claimedNFTs)
+    if(!contract || !metaData || !claimedNFTs)
   {
     return(
     <Container>
-        <Spinner style={{top:'0', left:'0'}} name="Loading"/>
+        <Spinner style={{}} name="Loading"/>
     </Container>
     )
   }
@@ -349,9 +358,11 @@ const LP = styled.button`
 
   return (
 
-    <div>
+    <>
+        <Nav>
+            <LogoutB onClick={logoutClick} style={{marginRight:"30px"}} />   
+        </Nav>  
         {
-            
 
            ( logoutClicked ? (
                 <Container>
@@ -369,7 +380,6 @@ const LP = styled.button`
 
             (
                 <Container>
-                <LogoutB onClick={logoutClick} />
                 <Wrapper>
                 <Logo src={logo} />
                 <Top>
@@ -393,9 +403,9 @@ const LP = styled.button`
                     </Top>
                     
                     <Bottom>
-                        { address && 
+                    { address && 
                         
-                        (claiming ? <Spinner name="Claiming"/> :
+                        (claiming ? <Spinner name="Claiming" /> :
                         
                         (
                             assetClaimed === null ? 
@@ -404,13 +414,13 @@ const LP = styled.button`
                                     Claim Asset    
                                 </Button>
                             ) :
-            
+                    
                             (assetClaimed ? 
                                 
                             (
                                 <Button>View Now</Button>
                             ) :
-            
+                    
                             (
                                 <Button>Claim Now</Button>
                             )
@@ -418,11 +428,11 @@ const LP = styled.button`
                         )
                             
                         )
-            
+                    
                         }
-            
+                    
                         {!address && 
-            
+                    
                             <>
                             <Button 
                                 className=""
@@ -430,11 +440,8 @@ const LP = styled.button`
                                 Connect Wallet
                             </Button>
                             </>
-            
-                        }
-            
-                       
                     
+                        }
                     </Bottom>
                     {/* <LP onClick={()=>{backClick();}}>Selection page</LP> */}
                 </Wrapper>
@@ -443,7 +450,7 @@ const LP = styled.button`
            )
         
         }
-    </div>
+    </>
     
    
 
@@ -453,6 +460,9 @@ const LP = styled.button`
   );
    
 }
+
+
+
 
 export default ClaimNFT
 

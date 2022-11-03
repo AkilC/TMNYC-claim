@@ -1,11 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import logo from '../tribe_market_logo.png'
+import logo from '../TMNYC_W@2x.png'
+
 
 
 const Container = styled.div`
     height: 80px;
-    background-color: black;
+    background-color: #222;
 
 
 `
@@ -13,18 +14,21 @@ const Container = styled.div`
 const Wrapper = styled.div`
     padding: 10px 20px;
     display: flex; 
-    justify-content: start;
+    align-items: center;
+    justify-content: space-between
+    
 `
 const Logo = styled.img`
-        height: 100px;
-        width: 150px;
+        height: 60px;
+        width: 110px;
 `
 
-const Navbar = () => {
+const Navbar = ({children}) => {
   return (
     <Container>
         <Wrapper>
             <Logo src={logo} />
+            {children}
         </Wrapper>
     </Container>
   )

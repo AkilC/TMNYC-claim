@@ -45,7 +45,7 @@ function App() {
 
  
   const [isLoggedIn, setIsLoggedIn] = useState(null)
-  const [userEmail, setUserEmail] = useState("")
+ 
   
   useEffect(()=>{
 
@@ -58,8 +58,7 @@ function App() {
       const res = await magic.user.getMetadata();
       console.log(res)
       console.log(res.email)
-      setUserEmail(res?.email)
-      res && localStorage.setItem('email', res.email)
+      res.email && localStorage.setItem('email', res.email)
       
       
     } catch (error) {
@@ -83,7 +82,7 @@ function App() {
     
 
     
-  }, [isLoggedIn, userEmail])
+  }, [isLoggedIn])
 
  
   
@@ -97,7 +96,7 @@ function App() {
         <Route path = "/" element={<Login isLoggedIn={isLoggedIn}/>}/>
         <Route path = "/nfcscan/:id" element={<NFCScan/>}/>
         <Route path = "/claimnft/:id" 
-          element={<ClaimNFT isLoggedIn={isLoggedIn} userEmail = {userEmail}/> }/>
+          element={<ClaimNFT isLoggedIn={isLoggedIn} /> }/>
           <Route path= "/selection" element={<Selection/>}/>
       </Routes>
     </Router>
@@ -109,10 +108,10 @@ export default App;
 
 
 
-{/* <Route path = "/claimnft/:id" 
+/* <Route path = "/claimnft/:id" 
           element={isLoggedIn === null ?
           (<Container>
             <Spinner style={{top:'0', left:'0'}} name="Loading"/>
           </Container>) 
           :
-          (isLoggedIn ? <ClaimNFT isLoggedIn={isLoggedIn} userEmail = {userEmail}/> : <Navigate to="/" />)  }/> */}
+          (isLoggedIn ? <ClaimNFT isLoggedIn={isLoggedIn} userEmail = {userEmail}/> : <Navigate to="/" />)  }/> */
