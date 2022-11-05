@@ -29,9 +29,11 @@ export const merchandise = [
             id: 3,
             img: img3,
             title: "Half-Star Mockneck",
-            productId: "635d7d445f68fe24e876e7d0",
-            contractAddress: "0xf838618497201a0d2c6d4E16642f5c2A12d44b74"
+            productId: "635d5ff20124f43c16e904d7",
+            contractAddress: "0x9E402cBE685ecd6B6f464116Fa5DF2f9bBCEE358"
         },
+        //635d7d445f68fe24e876e7d0  
+        //0xf838618497201a0d2c6d4E16642f5c2A12d44b74 
         {
             id: 4,
             img: img4,

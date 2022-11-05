@@ -421,7 +421,7 @@ const Nav = styled.nav`
                             (assetClaimed ? 
                                 
                             (
-                                <Button>View Now</Button>
+                                afterClaim ? <p>{metaData.description}</p> : <Button onClick={()=>{ setAfterClaim(true)}}>View Now</Button>
                             ) :
                     
                             (
@@ -435,6 +435,7 @@ const Nav = styled.nav`
                         )
                     
                         }
+
                    
                         {!address && 
                     
