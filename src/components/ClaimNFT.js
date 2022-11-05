@@ -206,14 +206,14 @@ const Nav = styled.nav`
 
   (props.isLoggedIn ? console.log('logged in') : console.log('not logged in'))
   
-
+  
 
   
   console.log(id)
   const product = merchandise.filter((product) =>{
     return product.productId === id.toString()
   })
-  const Navigate = useNavigate();
+  
   const contractAddress = product[0]?.contractAddress
   //new development once we get the params we import merchnadise and use id to get contractAddress
   const address = useAddress();
@@ -221,6 +221,10 @@ const Nav = styled.nav`
   const connectMetamask = useMetamask();
   const {contract} = useContract(contractAddress) // this is the contract instance of our drop collection 
   //one thing we also need is the meta data  of thecontract
+
+  console.log(contract)
+  console.log(contractAddress)
+
   
   const [metaData, setMetadata] = useState(false)
   
@@ -315,7 +319,7 @@ const Nav = styled.nav`
     // checking if user is on the right network
     if(isWrongNetwork)
     {   //switchNetwork could be undefined so we check before we run the fucntion
-       switchNetwork && switchNetwork(ChainId.Mumbai)
+       switchNetwork && switchNetwork(ChainId.Polygon)
        console.log("test" + switchNetwork)
        return;
     }
@@ -324,6 +328,7 @@ const Nav = styled.nav`
     
 
     try {
+        console.log(2)
         await contract?.claim(1)
         setClaiming(false)
         setAssetClaimed(true)
@@ -420,7 +425,9 @@ const Nav = styled.nav`
                             ) :
                     
                             (
-                                <Button>Claim Now</Button>
+                                <Button onClick={claim}>
+                                    Claim Now
+                                </Button>
                             )
                             )
                         )

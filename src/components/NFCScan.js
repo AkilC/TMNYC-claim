@@ -1,7 +1,6 @@
 import React, {useEffect, useState}from 'react'
 import styled from 'styled-components'
-import gif from '../TribeHoodie.gif'
-import logo from '../tribe_market_logo.png'
+import logo from '../TMNYC_W@2x.png'
 import { useParams } from 'react-router-dom'
 import { 
     useClaimedNFTs,
@@ -18,7 +17,7 @@ import { merchandise } from '../merchData'
 const Container = styled.div`
 
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     position: relative;
     overflow: hidden;
     background-color: black;
@@ -31,8 +30,8 @@ const Container = styled.div`
 `
 
 const Wrapper = styled.div`
-    height: 40rem;
-    width: 70rem;
+    
+    width: 25rem;
     position: relative;
     
     display: flex;
@@ -40,7 +39,7 @@ const Wrapper = styled.div`
 
     @media screen and (max-width: 800px){
         
-        width: 350px;
+        width: 300px;
         flex-direction: column;
         
     }
@@ -60,21 +59,21 @@ const Right =  styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 30px;
 `
 const Logo = styled.img`
-    position: absolute;
+   
     width: 116px;
     height: 77px;
-    left: 22.3rem;
-    top: -80px; 
+    margin-bottom: 5px;
+
     
 
     @media screen and (max-width: 800px)
     {
         width: 86px;
         height: 47px;
-        left: 22px;
-        top: -52px;
+        
         
     }
 
@@ -107,7 +106,7 @@ const Button = styled.button`
     @media screen and (max-width: 800px)
     {
         height: 55px;
-        width: 300px ;
+        width: 200px ;
     }
 
 `
@@ -135,7 +134,15 @@ const NFCScan = () => {
     const VDAClick = () =>{
         setVisualDigitalAsset(!visualDigitalAsset)
     }
-    const contract = useContract(contractAddress) // this is the contract instance of our drop collection 
+    const {contract} = useContract(contractAddress) // this is the contract instance of our drop collection 
+    const [metaData, setMetadata] = useState(false)
+  
+    useEffect(()=>{
+        if(contract)
+        {
+            contract.metadata.get().then(metadata => setMetadata(metadata) )
+        }
+    }, [contract])
     const { data: claimedNFTs, isLoading, error } = useClaimedNFTs( contract, { start: 0, count: 100 });
 
     //react sdk from thrid web has a nice hook called useClaimedNFTSupply
@@ -175,8 +182,17 @@ const NFCScan = () => {
 
     }
 
- 
+    if(!contract || !metaData || !claimedNFTs)
+    {
+      return(
+      <Container>
+          <Spinner  name="Loading"/>
+      </Container>
+      )
+    }
 
+ 
+    console.log(metaData)
     // useEffect(() => {
 
     //     var ownerA = address
@@ -196,8 +212,8 @@ const NFCScan = () => {
 
     
   return (
+    
     <Container>
-        
         <Wrapper>
         <Logo src={logo} />
             { isloading ? (<Spinner/>) :(visualDigitalAsset ? 
@@ -205,15 +221,15 @@ const NFCScan = () => {
 
                 <>
                 <Left>
-                <Image src={gif}/>   
-                <ItemName>Item Name</ItemName>
+                <Image src={metaData.image}/>   
+                <ItemName>{metaData.name}</ItemName>
                 <P>
                     {claimedNFTSupply?.toNumber()} / {" "}
                     {(claimedNFTSupply?.toNumber() || 0) + 
                     (unclaimedNFTSupply?.toNumber() || 0)}{" "}
                     Claimed
                 </P>
-            </Left>
+                </Left>
             
             <Right>
                 {   userOwnsAsset === null ? 
@@ -224,7 +240,7 @@ const NFCScan = () => {
                 </Button> ) :
 
                 (
-                    userOwnsAsset ? <div>owns</div> : <div>no</div>
+                    userOwnsAsset ? <div>{metaData.description}</div> : <div>You have not yet claimed this nft</div>
                 )
                     
                 }
@@ -236,14 +252,13 @@ const NFCScan = () => {
             (
                 <>
                 <Left>
-                <Image src={gif}/>   
-                <ItemName>Item Name</ItemName>
+                <Image src={metaData.image}/>   
+                <ItemName>{metaData.name}</ItemName>
             </Left>
             
             <Right>
                 <Button onClick={VDAClick}> View Digital Asset</Button>
                 <Button>Trading Card AR</Button>
-                <Button>Visual Try On</Button>
             </Right>
                 </>
             ))

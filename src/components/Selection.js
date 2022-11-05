@@ -78,7 +78,6 @@ const Image = styled.img`
     cursor: pointer;
     object-fit: cover;
     transition: all 0.5s ease;
-
     &:hover{
         background-color: #484848 ;
         transform: scale(1.1);

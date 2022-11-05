@@ -1,37 +1,20 @@
 import ClaimNFT from './components/ClaimNFT';
 import NFCScan from './components/NFCScan';
+
 import {
   BrowserRouter as Router, 
   Routes,
   Route,
-  Navigate
 } from "react-router-dom";
 import Login from './components/Login';
 import { Magic } from 'magic-sdk'
 import React, {useEffect, useState} from 'react'
-import Spinner from './components/Spinner';
-import styled from 'styled-components';
 import { MagicUserProvider } from './MagicUserContext';
-import MagicUserContext from './MagicUserContext';
-import { useContext } from 'react';
 import {OAuthExtension} from '@magic-ext/oauth'
 import Selection from './components/Selection';
 
 
-const Container = styled.div`
 
-    width: 100%;
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
-    background-color: black;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-
-`
 
 //const magic = new Magic('pk_live_B8ED3820154A68B1');
 
