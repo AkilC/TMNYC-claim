@@ -15,7 +15,7 @@ export const merchandise = [
             id: 1,
             img: img1,
             title: "Traverser Knit VNLA",
-            productId: " 635d5d1a6c0ae07a1a57da98",
+            productId: "635d5d1a6c0ae07a1a57da98",
             contractAddress: "0xEcc8000586032FD2bEf55464827010Baf710bb20"
         },
         {
@@ -23,7 +23,7 @@ export const merchandise = [
             img: img2,
             title: "Traverser Knit RED",
             productId: "635d701d23db295a63804ff6",
-            contractAddress: "0xe8364431D34aD675d8378799d348796837A772d1"
+            contractAddress: "0x33840A206E86b86dbad78E5E953c052632E24a1D"
         },
         {
             id: 3,
@@ -43,7 +43,7 @@ export const merchandise = [
             id: 5,
             img: img5,
             title: "Sacred Star Tee",
-            productId: " 635d5f35f514276167826691",
+            productId: "635d5f35f514276167826691",
             contractAddress: "0x872CE4b53De2066A771D8fdD0f9a5Ec89aa16A2D"
         },
         {
@@ -51,7 +51,7 @@ export const merchandise = [
             img: img6,
             title: "Architect Tee",
             productId: "635d5f87482d4abe6b0488ee",
-            contractAddress: " 0x086271Ad50c4c0750315161e2E9a60FE9780A304"
+            contractAddress: "0x086271Ad50c4c0750315161e2E9a60FE9780A304"
         },
         {
             id: 7,

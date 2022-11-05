@@ -144,7 +144,7 @@ const Selection = () => {
     const Navigate = useNavigate()
 
     
-    const userItemCheck = async (pID) =>{
+    const userItemCheck = async (pID,merchId) =>{
         //api call to get records
         
         try {
@@ -159,11 +159,11 @@ const Selection = () => {
             console.log(error)
         }
         
-        const userOwnsItem = ifUserOwnsItem(pID, Records);
+        const userOwnsItem = ifUserOwnsItem(pID,Records);
 
         if(userOwnsItem)
         {
-            Navigate(`/claimnft/${pID}`)
+            Navigate(`/claimnft/${merchId}`)
         
         }
         else{
@@ -247,7 +247,7 @@ const Selection = () => {
 
                                     return(
                                         <MerchWrap key={merch.id}>
-                                                    <Image src={merch.img} onClick={()=>{userItemCheck(merch.productId)}}/>
+                                                    <Image src={merch.img} onClick={()=>{userItemCheck(merch.productId, merch.id.toString())}}/>
                                                 <h4>{merch.title}</h4>
                                         </MerchWrap>
                                     )

@@ -5,6 +5,7 @@ const ifUserOwnsItem = (productId, orderData) =>{
 
     let emailCheck = false
         let pIDCheck  = false
+        let titleCheck = false
         console.log(orderData)
         let len = orderData.records.length
         for(let i = 0; i < len ; i++)

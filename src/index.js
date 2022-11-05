@@ -14,7 +14,7 @@ root.render(
     sdkOptions={{
       gasless: {
         openzeppelin: {
-          relayerUrl: "https://api.defender.openzeppelin.com/autotasks/7c50e13d-988a-43ca-b519-ffb57474c363/runs/webhook/bb91c160-5af7-4067-94e9-f1416359568b/LSfZ8UWZh3av6jECkhdeUr./",
+          relayerUrl: "https://api.defender.openzeppelin.com/autotasks/7c50e13d-988a-43ca-b519-ffb57474c363/runs/webhook/bb91c160-5af7-4067-94e9-f1416359568b/LSfZ8UWZh3av6jECkhdeUr",
         },
       },
     }}

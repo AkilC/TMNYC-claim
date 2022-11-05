@@ -126,7 +126,7 @@ const NFCScan = () => {
 
     const { id } = useParams();
     const product = merchandise.filter((product) =>{
-        return product.productId === id.toString()
+        return product.id.toString() === id.toString()
       })
     const contractAddress = product[0]?.contractAddress
     const [visualDigitalAsset, setVisualDigitalAsset] = useState(false)

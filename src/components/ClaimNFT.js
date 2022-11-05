@@ -12,7 +12,8 @@ import {
     useNetworkMismatch,
     useNetwork,
     ChainId,
-    ConnectWallet
+    ConnectWallet,
+    ThirdwebProvider
 } from "@thirdweb-dev/react";
 import logo from '../TMNYC_W@2x.png' 
 import styled from 'styled-components'
@@ -207,11 +208,11 @@ const Nav = styled.nav`
   (props.isLoggedIn ? console.log('logged in') : console.log('not logged in'))
   
   
-
   
-  console.log(id)
+  
+  
   const product = merchandise.filter((product) =>{
-    return product.productId === id.toString()
+    return product.id.toString() === id.toString()
   })
   
   const contractAddress = product[0]?.contractAddress
@@ -222,8 +223,7 @@ const Nav = styled.nav`
   const {contract} = useContract(contractAddress) // this is the contract instance of our drop collection 
   //one thing we also need is the meta data  of thecontract
 
-  console.log(contract)
-  console.log(contractAddress)
+  
 
   
   const [metaData, setMetadata] = useState(false)
@@ -235,7 +235,7 @@ const Nav = styled.nav`
     }
   }, [contract])
  
-  
+  const [afterClaim, setAfterClaim] = useState(false)
   
   
   const { data: unclaimedNfts} = useUnclaimedNFTs(contract, { start: 0, count: 100 });
@@ -435,7 +435,7 @@ const Nav = styled.nav`
                         )
                     
                         }
-                    
+                   
                         {!address && 
                     
                             <>
